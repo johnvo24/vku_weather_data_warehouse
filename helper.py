@@ -23,7 +23,10 @@ class Helper():
     if(save_to): df_concat.to_csv(save_to, index=False)
     return df_concat
 
-# Helper().encode_time("data/open-meteo-21.00N105.88E19m.csv", save_to="data/dim_time/dim_time.csv")
+Helper().encode_time(
+  "references/Hourly-1-1-2018-31-12-2018.csv",
+  save_to="data/dim_time/dim_time_1.csv")
+
 # Helper().concat_csv(filepaths=[
 #   "data/dim_time/dim_time_1.csv",
 #   "data/dim_time/dim_time_2.csv",
