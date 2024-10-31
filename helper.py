@@ -4,7 +4,8 @@ class Helper():
 # Time
   def seperate_time(self, time_str):
     dt = pd.to_datetime(time_str)
-    return []
+    return [dt.day_of_year, dt.day, dt.year, dt.month, dt.date, ]
+
 
   def encode_time(self, filepath="", column="time"):
     df = pd.read_csv(filepath)[:100]
