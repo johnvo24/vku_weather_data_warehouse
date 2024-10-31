@@ -22,6 +22,26 @@ class Helper():
     df_concat = pd.concat(dfs)
     if(save_to): df_concat.to_csv(save_to, index=False)
     return df_concat
+  
+  def concat_fact(self):
+    self.concat_csv([
+      "data/daily/daily-2018.csv",
+      "data/daily/daily-2020.csv",
+      "data/daily/daily-2022.csv",
+      "data/daily/daily-2024.csv",
+    ], "data/fact_daily_summary/fact_daily_summary.csv")
+
+    self.concat_csv([
+      "data/hourly/hourly-2018.csv",
+      "data/hourly/hourly-2019.csv",
+      "data/hourly/hourly-2020.csv",
+      "data/hourly/hourly-2021.csv",
+      "data/hourly/hourly-2022.csv",
+      "data/hourly/hourly-2023.csv",
+      "data/hourly/hourly-2024.csv",
+    ], "data/fact_weather/fact_weather.csv")
+
+    print(f"[JV] Concatenated successfully!")
 
 # Helper().encode_time(
 #   "references/hourly/hourly-2018.csv",
