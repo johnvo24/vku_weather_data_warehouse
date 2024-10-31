@@ -6,14 +6,14 @@ class Helper():
     dt = pd.to_datetime(time_str)
     return [dt.year*100000+dt.day_of_year*100+dt.hour, dt.day_of_week, dt.year, dt.month, dt.day, dt.hour]
 
-  def encode_time(self, filepath="", column="time", save_to=None):
+  def encode_time(self, filepath="", column="time_id", save_to=None):
     df = pd.read_csv(filepath)[:100]
     data = [self.seperate_time(time_str) for time_str in df[column]]
     df_time = pd.DataFrame(data, columns=["time_id", "day", "year", "month", "date", "hour"])
-    if(save_to): df_time.to_csv(save_to, index=False)
+    # if(save_to): df_time.to_csv(save_to, index=False)
     df[column] = df_time["time_id"]
-    # print(df.head(10))
-    df.to_csv(filepath, index=False)
+    print(df_time.head(10))
+    # df.to_csv(filepath, index=False)
     return df_time
 
 # Concat
@@ -24,7 +24,7 @@ class Helper():
     return df_concat
 
 Helper().encode_time(
-  "references/Hourly-1-1-2018-31-12-2018.csv",
+  "references/daily/2018-01-01__2019-12-31.csv",
   save_to="data/dim_time/dim_time_1.csv")
 
 # Helper().concat_csv(filepaths=[
