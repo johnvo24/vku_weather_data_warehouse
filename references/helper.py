@@ -1,0 +1,3 @@
+# Time
+def encode():
+  pass
