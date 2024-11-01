@@ -20,7 +20,11 @@ class Helper():
   def concat_csv(self, filepaths, save_to=None, index=False):
     dfs = [pd.read_csv(filepath) for filepath in filepaths]
     df_concat = pd.concat(dfs)
-    if(save_to): df_concat.to_csv(save_to, index=index)
+    if(save_to): 
+      df_concat.to_csv(save_to, index=False)
+      if(index):
+        df_temp = pd.read_csv(save_to)
+        df_temp.to_csv(save_to, index=True)
     return df_concat
   
   def concat_fact(self):
