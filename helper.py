@@ -50,7 +50,6 @@ class Helper():
 # Ae chạy hàm ni để concatnate lại bảng fact
 Helper().concat_fact()
 
-
 # df = pd.read_csv("data/dim_time.csv")
 # df = df.drop(df.columns[0], axis=1)
 # df.to_csv("data/dim_time.csv", index=False)
