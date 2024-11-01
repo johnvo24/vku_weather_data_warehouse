@@ -17,10 +17,10 @@ class Helper():
     return df_time
 
 # Concat
-  def concat_csv(self, filepaths, save_to=None):
+  def concat_csv(self, filepaths, save_to=None, index=False):
     dfs = [pd.read_csv(filepath) for filepath in filepaths]
     df_concat = pd.concat(dfs)
-    if(save_to): df_concat.to_csv(save_to, index=False)
+    if(save_to): df_concat.to_csv(save_to, index=index)
     return df_concat
   
   def concat_fact(self):
@@ -29,7 +29,7 @@ class Helper():
       "references/daily/daily-2020.csv",
       "references/daily/daily-2022.csv",
       "references/daily/daily-2024.csv",
-    ], "data/fact_daily_summary.csv")
+    ], "data/fact_daily_summary.csv", True)
     
     self.concat_csv([
       "references/hourly/hourly-2018.csv",
@@ -39,7 +39,7 @@ class Helper():
       "references/hourly/hourly-2022.csv",
       "references/hourly/hourly-2023.csv",
       "references/hourly/hourly-2024.csv",
-    ], "data/fact_weather.csv")
+    ], "data/fact_weather.csv", True)
 
     print(f"[JV] Concatenated successfully!")
 
