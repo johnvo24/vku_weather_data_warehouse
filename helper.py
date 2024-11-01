@@ -10,10 +10,10 @@ class Helper():
     df = pd.read_csv(filepath)
     data = [self.seperate_time(time_str) for time_str in df[column]]
     df_time = pd.DataFrame(data, columns=["time_id", "day", "year", "month", "date", "hour"])
-    if(save_to): df_time.to_csv(save_to, index=False)
     df[column] = df_time["time_id"]
-    # print(df_time.head(10))
-    df.to_csv(filepath, index=False)
+    # df.to_csv(filepath, index=False)
+    df_time = df_time.drop_duplicates(subset=[column], keep="first")
+    if(save_to): df_time.to_csv(save_to, index=False)
     return df_time
 
 # Concat
@@ -29,8 +29,8 @@ class Helper():
       "references/daily/daily-2020.csv",
       "references/daily/daily-2022.csv",
       "references/daily/daily-2024.csv",
-    ], "data/fact_daily_summary/fact_daily_summary.csv")
-
+    ], "data/fact_daily_summary.csv")
+    
     self.concat_csv([
       "references/hourly/hourly-2018.csv",
       "references/hourly/hourly-2019.csv",
@@ -39,7 +39,7 @@ class Helper():
       "references/hourly/hourly-2022.csv",
       "references/hourly/hourly-2023.csv",
       "references/hourly/hourly-2024.csv",
-    ], "data/fact_weather/fact_weather.csv")
+    ], "data/fact_weather.csv")
 
     print(f"[JV] Concatenated successfully!")
 
@@ -47,19 +47,23 @@ class Helper():
 Helper().concat_fact()
 
 
+# df = pd.read_csv("data/dim_time.csv")
+# df = df.drop(df.columns[0], axis=1)
+# df.to_csv("data/dim_time.csv", index=False)
+
 # Helper().encode_time(
 #   "references/hourly/hourly-2018.csv",
-#   save_to="data/dim_time/dim_time_2018.csv")
+#   save_to="data/dim_time_2018.csv")
 
 # Helper().encode_time(
 #   "references/daily/daily-2018.csv")
 
 # Helper().concat_csv(filepaths=[
-#   "data/dim_time/dim_time_2018.csv",
-#   "data/dim_time/dim_time_2019.csv",
-#   "data/dim_time/dim_time_2020.csv",
-#   "data/dim_time/dim_time_2021.csv",
-#   "data/dim_time/dim_time_2022.csv",
-#   "data/dim_time/dim_time_2023.csv",
-#   "data/dim_time/dim_time_2024.csv",
-# ], save_to="data/dim_time/dim_time.csv")
+#   "data/dim_time_2018.csv",
+#   "data/dim_time_2019.csv",
+#   "data/dim_time_2020.csv",
+#   "data/dim_time_2021.csv",
+#   "data/dim_time_2022.csv",
+#   "data/dim_time_2023.csv",
+#   "data/dim_time_2024.csv",
+# ], save_to="data/dim_time.csv")
