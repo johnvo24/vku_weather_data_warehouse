@@ -25,23 +25,27 @@ class Helper():
   
   def concat_fact(self):
     self.concat_csv([
-      "data/daily/daily-2018.csv",
-      "data/daily/daily-2020.csv",
-      "data/daily/daily-2022.csv",
-      "data/daily/daily-2024.csv",
+      "references/daily/daily-2018.csv",
+      "references/daily/daily-2020.csv",
+      "references/daily/daily-2022.csv",
+      "references/daily/daily-2024.csv",
     ], "data/fact_daily_summary/fact_daily_summary.csv")
 
     self.concat_csv([
-      "data/hourly/hourly-2018.csv",
-      "data/hourly/hourly-2019.csv",
-      "data/hourly/hourly-2020.csv",
-      "data/hourly/hourly-2021.csv",
-      "data/hourly/hourly-2022.csv",
-      "data/hourly/hourly-2023.csv",
-      "data/hourly/hourly-2024.csv",
+      "references/hourly/hourly-2018.csv",
+      "references/hourly/hourly-2019.csv",
+      "references/hourly/hourly-2020.csv",
+      "references/hourly/hourly-2021.csv",
+      "references/hourly/hourly-2022.csv",
+      "references/hourly/hourly-2023.csv",
+      "references/hourly/hourly-2024.csv",
     ], "data/fact_weather/fact_weather.csv")
 
     print(f"[JV] Concatenated successfully!")
+
+# Ae chạy hàm ni để concatnate lại bảng fact
+Helper().concat_fact()
+
 
 # Helper().encode_time(
 #   "references/hourly/hourly-2018.csv",
